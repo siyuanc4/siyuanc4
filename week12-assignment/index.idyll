@@ -1,0 +1,75 @@
+[meta title:"Week12 Assignment" description:"Short description of your project" /]
+
+[Header
+  fullWidth:true
+  title:"Week12 Assignment"
+  author:"Siyuan Cheng"
+  authorLink:"https://idyll-lang.org"
+  date:"Apr 17, 2022"
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+[var name:"x" value:0 /]
+
+
+
+[var name:"state" value:0 /]
+[CustomD3Component className:"d3-component" state:state /]
+[button onClick:`state++`]
+  Click Me.
+[/button]
+
+
+Now we can load this dataset with:
+
+```
+[data name:"temp" source:"temp_year.csv" /]
+```
+
+
+
+We can check out our data really quick with an interactive table:
+
+
+
+[data name:"temp" source:"temp_year.csv" /]
+
+
+[Table data:temp /]
+
+
+
+First run `npm install --save idyll-vega-lite` to install the
+Vega Lite component.
+
+
+
+[IdyllVegaLite data:temp spec:`{
+  mark: "line",
+  encoding: {
+    x: {
+      field: "Year",
+      type: "temporal",
+      axis: {title: "annual", format:"%Y"}
+    },
+    y: {
+      field: "Mean",
+      type: "quantitative",
+      axis: {title: "number"}
+    }
+  }
+}` /]
+
+
+
+## Description
+
+First, I find this dataset online. I use google search to search the annual temperature, and I find a lot of dataset with csv file. 
+However, most of the data is not available on idyll, so I have to select one which is small and not complex. 
+It took me some time to do it, but finally I found one which can access to idyll.
+
+This dataset is vey simple, it only include year and mean of temperature. 
+I use the line plot to show the relationship between year and mean of temperature. 
+We can see the trend is increasing, so we can say that the temperature is getting higher over year. 
+
